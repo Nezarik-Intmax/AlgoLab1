@@ -6,9 +6,9 @@ int hashFunction(int a){
     return b;
 }
 
-int main()
-{
+int main(){
     int a[N];
+    printf("Начальный массив:");
     for (int i = 0; i < N; i++) {
         bool stop = false;
         while (!stop){
@@ -29,5 +29,25 @@ int main()
         if(i % 10 == 0) cout << endl;
         cout << a[i] << "  ";
     }
+    printf("\nКонечный массив:\n ");
+    const int t = N * 1.5;
+    int b[t];
+    for(int i = 0; i < t; i++)b[i]=0;
+    for(int i = 0; i < N; i++){
+        int ind = hashFunction(a[i]);
+        while(1){
+            if(ind > t) ind %= t;
+            if(b[ind]==0){
+                b[ind]=a[i];
+                break;
+            }
+            else ind++;
+        }
+    }
+    for(int i = 0; i < t; i++){
+        if(i % 10 == 0) cout << endl;
+        cout << b[i] << "  ";
+    }
+
     cout << "\nend";
 }
